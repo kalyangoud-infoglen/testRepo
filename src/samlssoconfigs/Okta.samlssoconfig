@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SamlSsoConfig xmlns="http://soap.sforce.com/2006/04/metadata">
+    <identityLocation>SubjectNameId</identityLocation>
+    <identityMapping>Username</identityMapping>
+    <issuer>exk1ci8zn1b2CprI80h8</issuer>
+    <loginUrl>https://rapid7.okta.com/app/salesforce/exk1ci8zn1b2CprI80h8/sso/saml</loginUrl>
+    <logoutUrl>https://rapid7.okta.com</logoutUrl>
+    <name>Okta</name>
+    <oauthTokenEndpoint>https://r7--HA.cs50.my.salesforce.com/services/oauth2/token?so=00D3B000000DYqe</oauthTokenEndpoint>
+    <redirectBinding>false</redirectBinding>
+    <requestSignatureMethod>1</requestSignatureMethod>
+    <salesforceLoginUrl>https://r7--HA.cs50.my.salesforce.com?so=00D3B000000DYqe</salesforceLoginUrl>
+    <samlEntityId>https://r7.my.salesforce.com</samlEntityId>
+    <samlVersion>SAML2_0</samlVersion>
+    <userProvisioning>false</userProvisioning>
+    <validationCert>MIIDnDCCAoSgAwIBAgIGAVgq41LJMA0GCSqGSIb3DQEBCwUAMIGOMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxDzANBgNVBAMMBnJhcGlkNzEcMBoGCSqGSIb3DQEJARYNaW5mb0Bva3RhLmNvbTAeFw0xNjExMDMxNTUwMzBaFw0yNjExMDMxNTUxMzBaMIGOMQswCQYDVQQGEwJVUzETMBEGA1UECAwKQ2FsaWZvcm5pYTEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzENMAsGA1UECgwET2t0YTEUMBIGA1UECwwLU1NPUHJvdmlkZXIxDzANBgNVBAMMBnJhcGlkNzEcMBoGCSqGSIb3DQEJARYNaW5mb0Bva3RhLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALGOW4Wi9ZJmnZQPW2j9djyWr7YvBPC2/kb1cNi4Chihrb8dVkin3+mwvwbcM44/nLvEQKS6LM8/zLU7wK52mzkVp8yvvAUsJCqXWGSWUyApphIHWWDZfSCdmk6ekCLmC6izd0zMtuUPiljHkxHVvsqlsMJgEA8hyGDmnhg9vTGnLDjREYYIytTfITmN0wWaQtl+QAbS4+sW5wX6vTPSJG4GGMWySS9MxrZ380REhrx6faRWLlHF+SLy+69Bjce9q/qBmRQbBTOH3IThZY2TfG5aUSe0PiFowwChRRKtRBfIixASq3vhr57JG3RAzWKF6cwOPv3r248ApRUwkiDl8v8CAwEAATANBgkqhkiG9w0BAQsFAAOCAQEAWy12S19o3unU+LM5DK3B4H0T8emsQ/1gLQ5pSgU0LDBnoMSETaTsEfNW3i86dBT163R5JmnCOAEGh15aXIwbJiDQqjCjegz3MYEpOHdyIqscN/TIswvenkchGcLEW7/A4gKKbW3ybwZJg55D95hYHHI/qG8uPu6f0QwMbeEMgbBImVsmqMJDZYC+khYY7XorH7LtmJI56ujGLcXAYjbpOlraUpNQPBSSZXk8jYWrUhvUMmIBiY1oo2z3QJrEGQJmGQZRGMyI2dteBAGTEqiQtVS8mDPKj6MnHUAP6qJAv6UTZwEfv0CjIqaaaGsXfxNP5PXdOAAmU9qLKA3DQGalxQ==</validationCert>
+</SamlSsoConfig>

@@ -1,0 +1,133 @@
+/**
+ * Phone number following conventions established by E.164
+ *
+ * @see https://en.wikipedia.org/wiki/E.164
+ */
+global class Phone {
+
+    private String countryCode;
+    private String extension;
+    private String subscriberNumber;
+
+    global Phone(String countryCode, String subscriberNumber) {
+        this(countryCode, subscriberNumber, null);
+    }
+
+    global Phone(String countryCode, String subscriberNumber, String extension) {
+        this.countryCode = countryCode;
+        this.subscriberNumber = subscriberNumber;
+        this.extension = extension;
+    }
+
+    global String format() {
+        String formatted = null;
+        if (this.isValid() && this.countryCode != null) {
+            PhoneService ps = PhoneService.getInstance(this.countryCode);
+            formatted = ps.format(subscriberNumber, extension);
+        }
+        else {
+            formatted = (this.countryCode == null ? '' : ('+' + this.countryCode))
+                    + (this.subscriberNumber == null ? '' : this.subscriberNumber)
+                    + (this.extension == null ? '' : this.extension);
+        }
+        return formatted;
+    }
+
+    global String getCountryCode() {
+        
+        String ccValue;
+        if (this.countryCode != null) ccValue = this.countryCode;
+        else ccValue = 'Int';
+        return ccValue;
+        //return this.countryCode;
+    }
+
+    global String getExtension() {
+        return this.extension;
+    }
+
+    global String getSubscriberNumber() {
+        return this.subscriberNumber;
+    }
+
+    global Boolean hasCountryCode() {
+        return !String.isEmpty(this.countryCode);
+    }
+
+    global Boolean interSubscriberNumber() {
+        return this.subscriberNumber.startsWithIgnoreCase('+') ? true : false;
+    }
+
+    global Boolean hasExtension() {
+        return !String.isEmpty(this.extension);
+    }
+
+    global Boolean hasSubscriberNumber() {
+        return !String.isEmpty(this.subscriberNumber);
+    }
+
+    global Boolean isValid() {
+        
+        // Assume invalid unless proven otherwise
+        Boolean valid = false;
+        // Don't bother checking if we don't have a global subscriber number
+        if (this.hasCountryCode() && this.hasSubscriberNumber()) {
+            PhoneService ps = PhoneService.getInstance(this.getCountryCode());
+            valid = ps.validateSubscriberNumber(this.getSubscriberNumber());
+        }
+
+        if (!this.hasCountryCode() && this.interSubscriberNumber()) {
+            PhoneService ps = PhoneService.getInstance(this.getCountryCode());
+            valid = ps.validateSubscriberNumber(this.getSubscriberNumber());
+        }
+        // Return validity
+        return valid;
+    }
+
+    global static Phone valueOf(String value) {
+        // TODO: Handle international call prefixes
+        //Check to see if the String value already had + as a suffix
+        //this tells us that the phone is already formated and we can 
+        //skip force format steps. 
+        String countryCode = null;
+        String subscriberNumber = null;
+        String extension = null;
+        if (value.startsWithIgnoreCase('+') 
+                || (value.length() > 10 && UserInfo.getProfileId() == UserUtil.getMarketoProfileID())){
+            subscriberNumber = value.replaceAll('\\s+', '');
+        }
+        else{
+            // Handle the country code by looking for known country codes
+            // at the beginning of the number
+            String countryCodeRegex = PhoneUtil.getCountryCodeRegex();
+
+            Matcher countryCodeMatcher =
+                    Pattern.compile(countryCodeRegex).matcher(value);
+
+            countryCode = countryCodeMatcher.find()
+                    ? countryCodeMatcher.group(1)
+                    : PhoneSetting__c.getInstance().DefaultCountryCode__c;
+            // Handle the subscriber number and the possible extension
+
+            // Remove the country code and
+            // strip all remaining non-digit characters
+            value = value.replaceAll(countryCodeRegex, '');
+            value = value.replaceAll('[^\\d]', '');
+
+            // If the remaining string has more characters than the
+            // max length, assume the extra is the extension.
+            PhoneService ps = PhoneService.getInstance(countryCode);
+
+            if (value.length() > ps.getMaxSubscriberNumberLength()) {
+               subscriberNumber = value.left(ps.getMaxSubscriberNumberLength());
+                extension = value.right(
+                        value.length() - ps.getMaxSubscriberNumberLength());
+            }
+            else {
+                subscriberNumber = value;
+            }
+        }
+        // Return the phone!
+        return new Phone(countryCode, subscriberNumber, extension);
+    }
+}

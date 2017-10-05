@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StaticResource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <cacheControl>Private</cacheControl>
+    <contentType>text/xml</contentType>
+    <description>curl -X GET \
+  &apos;https://updates.metasploit.com/services/validate_email?contactEmail=bugs%40slalom.com&apos; \
+  -H &apos;cache-control: no-cache&apos; \
+  -H &apos;postman-token: afe847fb-1464-22fb-d967-eb93fbdce0f2&apos;</description>
+</StaticResource>

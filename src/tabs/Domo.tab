@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>600</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>Domo</label>
+    <mobileReady>false</mobileReady>
+    <motif>Custom79: Measuring Tape</motif>
+    <url>https://rapid7.domo.com/page/{!User.DomoId__c}</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

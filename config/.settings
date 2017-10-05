@@ -1,0 +1,29 @@
+{
+    "projectName": "Rapid7Sandbox.ha",
+    "username": "ankita@infoglen.com.r7.ha",
+    "id": "d499b8b0-a963-11e7-93fa-7b7459b6c724",
+    "namespace": "",
+    "orgType": "developer",
+    "loginUrl": "https://login.salesforce.com/",
+    "instanceUrl": "https://r7--HA.cs50.my.salesforce.com",
+    "workspace": "C:\\MavensMate_Workspace",
+    "subscription": [
+        "ApexClass",
+        "ApexComponent",
+        "ApexPage",
+        "ApexTrigger",
+        "ApprovalProcess",
+        "AssignmentRules",
+        "CustomLabels",
+        "CustomMetadata",
+        "CustomObject",
+        "EmailTemplate",
+        "Group",
+        "PermissionSet",
+        "Profile",
+        "Queue",
+        "Role",
+        "StaticResource",
+        "Workflow"
+    ]
+}

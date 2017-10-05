@@ -1,0 +1,1 @@
+<result email='foghorn@acme.test' reason='' valid='true'/>

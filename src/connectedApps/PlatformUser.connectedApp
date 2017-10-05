@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>priya_dodwad@rapid7.com</contactEmail>
+    <label>PlatformUser</label>
+    <oauthConfig>
+        <callbackUrl>https://r7.my.salesforce.com/services/oauth2/callback</callbackUrl>
+        <consumerKey>3MVG9snqYUvtJB1PjqgrcRkRq54EOBPFKlU6O8PS5g11bBWOkRSu0cbcIX5TgctWgjmTN9gbavMcEsFvG6G98</consumerKey>
+        <scopes>Api</scopes>
+    </oauthConfig>
+</ConnectedApp>

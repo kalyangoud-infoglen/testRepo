@@ -1,0 +1,1 @@
+<result email='bugs@no.mail.server' reason='No mail server' valid='false'/>

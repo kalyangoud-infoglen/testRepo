@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalPicklist xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Status of a job in an asynchronous job chain, e.g., the job chain the comprises the inbound lead processing service</description>
+    <globalPicklistValues>
+        <fullName>Not Started</fullName>
+        <default>true</default>
+    </globalPicklistValues>
+    <globalPicklistValues>
+        <fullName>Requested</fullName>
+        <default>false</default>
+    </globalPicklistValues>
+    <globalPicklistValues>
+        <fullName>Enqueued</fullName>
+        <default>false</default>
+    </globalPicklistValues>
+    <globalPicklistValues>
+        <fullName>Success</fullName>
+        <default>false</default>
+    </globalPicklistValues>
+    <globalPicklistValues>
+        <fullName>Error</fullName>
+        <default>false</default>
+    </globalPicklistValues>
+    <globalPicklistValues>
+        <fullName>Skipped</fullName>
+        <default>false</default>
+    </globalPicklistValues>
+    <masterLabel>Async Job Status</masterLabel>
+    <sorted>false</sorted>
+</GlobalPicklist>

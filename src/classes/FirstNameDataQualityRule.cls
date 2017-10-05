@@ -1,0 +1,82 @@
+public with sharing class FirstNameDataQualityRule implements DataQuality.Rule {
+
+    /**
+     * The score at which the value is considered to have passed the
+     * data quality requirement embodied by the rule
+     */
+    public static final Decimal PASSING_SCORE = 34.0;
+
+    private Schema.SObjectField field;
+
+    public FirstNameDataQualityRule(Schema.SObjectField field) {
+        this.field = field;
+    }
+
+    public static String cleanFirstName(String value) {
+        value = DataQualityUtil.cleanSpecialChars(value);
+        value = DataQualityUtil.cleanProperCase(value);
+        return value;
+    }
+
+    public static DataQuality.ScoreResult getFirstNameDataQualityScore(String value) {
+
+        DataQuality.ScoreResult result = new  DataQuality.ScoreResult();
+
+        // Assume a terrible score unless proven otherwise
+        Decimal score = 0.0;
+        List<String> junkReasons = new List<String>();
+      
+        // Only try calculating a score if there's even a value to examine
+        // in the First Name field
+        if (value != null) {
+            Decimal pointsPossible = 0.0;
+            Decimal pointsAwarded = 0.0;
+
+            for (DataQuality.Check eachCheck : getChecks()) {
+                DataQuality.CheckResult res = eachCheck.process(value);
+                pointsPossible += res.pointsPossible;
+                pointsAwarded += res.pointsAwarded;
+                if (res.isFailed()) junkReasons.add(res.error);
+            }
+
+            score = pointsAwarded / pointsPossible * 100;
+        }
+
+        result.score = score.setScale(0);
+        result.failReason = junkReasons.size() == 0 ? null : String.join(junkReasons, '; ');
+
+        return result;
+    }
+
+    public static List<DataQuality.Check> getChecks() {
+        return new List<DataQuality.Check> {
+            new ContainsAlphaCheck(),
+            new ContainsVowelCheck(),
+            new ContainsSwearCheck(),
+            new NameBlacklistCheck()
+        };
+    }
+
+    public Schema.SObjectField getField() {
+        return this.field;
+    }
+
+    public DataQuality.RuleResult process(Object value) {
+
+        // Initialize the result
+        DataQuality.RuleResult result = new DataQuality.RuleResult();
+        result.rawValue = value;
+
+        // Calculate the score
+        DataQuality.ScoreResult scoreFinal = getFirstNameDataQualityScore((String)value);
+        result.score = scoreFinal.score;
+
+        // If we've got a passing score, clean the value
+        if (result.score >= PASSING_SCORE) {
+            result.cleanValue = cleanFirstName((String)value);
+        }
+        result.failReason = scoreFinal.failReason;
+        
+        return result;
+    }
+}
