@@ -10,7 +10,9 @@ trigger LeadTrigger on Lead (
 
     // Process all of the trigger workflows
     service.process(new List<Type> {
+        /* Modified for PHX-2177*/
         LeadCheckBDROwner.class,
+        //end
         LeadJunkScrubWorkflow.class,
         LeadJunkScrubAssignWorkflow.class,
         LeadRestrictedPartyWorkflow.class,

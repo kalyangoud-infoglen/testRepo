@@ -75,7 +75,7 @@ global class LeadMergeJob extends AbstractProfiledAsyncJob {
 
         update survivors.values();
     }
-    
+    /* Modified for PHX-2177*/
     private Boolean isOwnerQueueMember(Lead survivor) {
         Boolean result = false;
         result = LeadUtil.isOwnerQueueMember(survivor.OwnerId);

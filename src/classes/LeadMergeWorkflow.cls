@@ -31,6 +31,7 @@ public with sharing class LeadMergeWorkflow extends AbstractSobjectWorkflow {
 
         // Aggregate the set of email addresses
         Set<String> emailSet = new Set<String>();
+        /* Modified for PHX-2177*/
         Set<Id> idSet = new Set<Id>();
         Group autocloseQueue = UserUtil.getQueue(UserUtil.AUTOCLOSED_QUEUE);
         Id autocloseQueueId = null;

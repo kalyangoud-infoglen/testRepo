@@ -1,3 +1,4 @@
+/*Class to check if Lead Owner is present in BDR Queue.*/
 public with sharing class LeadCheckBDROwner extends AbstractSobjectWorkflow {
 
     public LeadCheckBDROwner () {

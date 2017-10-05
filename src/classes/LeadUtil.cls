@@ -60,6 +60,7 @@ public with sharing class LeadUtil {
         return records;
     }
     
+    /* Modified for PHX-2177 to check if Lead Owner present in Queue Member.*/
     public static Boolean isOwnerQueueMember(Id ownerId) {
         Boolean result = false;
         List<LeadAssignment__Queue_Member_Detail__c> memberList = [Select Id,LeadAssignment__Queue_member__c from LeadAssignment__Queue_Member_Detail__c where LeadAssignment__Queue_member__c =:ownerId AND LeadAssignment__Queue_Detail__r.LeadAssignment__Active__c =: true limit 1];
